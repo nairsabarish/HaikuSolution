@@ -1,0 +1,28 @@
+﻿
+@model Haiku.Models.ReviewHaikuViewModel
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<div class="form-group">
+    <div class="form-group">
+        <label for="reviewTextArea">Enter Haiku Text for Review</label>
+
+        @Html.TextAreaFor(m => m.HaikuText.HaikuText, new {@class = "form-control", @rows = 3 })
+        @Html.ValidationMessageFor(m => m.HaikuText,null,new { @class = "text-danger" })
+
+        @Html.HiddenFor(m => m.HaikuText.SyllableCountFirstLine)
+        @Html.HiddenFor(m => m.HaikuText.SyllableCountSecondLine)
+        @Html.HiddenFor(m => m.HaikuText.SyllableCountThirdLine)
+        @Html.HiddenFor(m => m.HaikuText.HaikuResult)
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

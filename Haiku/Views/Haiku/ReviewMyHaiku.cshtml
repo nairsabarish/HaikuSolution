@@ -1,0 +1,71 @@
+﻿
+@model Haiku.Models.ReviewHaikuViewModel
+@{
+    ViewBag.Title = "Review My Haiku";
+}
+
+<h2>Haiku Details</h2>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li>
+        <a href="#_FirstTab" role="tab" data-toggle="tab" id="FirstTab">Review My Haiku</a>
+    </li>
+    <li>
+        <a href="#_SecondTab" role="tab" data-toggle="tab" id="SecondTab">My Reviewed Haikus</a>
+    </li>
+</ul>
+
+
+@using (Html.BeginForm("ReviewMyHaiku", "Haiku", FormMethod.Post,new { enctype = "multipart/form-data" }))
+{
+
+@Html.AntiForgeryToken()
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade" id="_FirstTab">
+        @{ 
+            Html.RenderPartial("_partialReviewMyHaiku");
+        }
+
+        <input class="btn btn-primary" type="submit" value="Submit" />
+        
+    </div>
+    <div class="tab-pane fade" id="_SecondTab">
+        @{ 
+            Html.RenderPartial("_partialMyReviewedHaikus");
+        }
+    </div>
+</div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var IsSecondtabSelected = '@Model.IsSecondTabSelected.ToString().ToLower()';
+
+    $(document).ready(function () {
+        if (IsSecondtabSelected == 'true') {
+            activateTab("SecondTab");
+        }
+        else {
+            activateTab("FirstTab");
+        }
+    });
+
+    //Activate the second tab to show the results
+    function activateTab(tabName) {
+        $("#" + tabName + "").tab('show');
+    }
+    
+    
+</script>
+
+
+
+  
+

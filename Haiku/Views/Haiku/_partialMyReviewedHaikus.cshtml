@@ -1,0 +1,35 @@
+﻿
+@model Haiku.Models.ReviewHaikuViewModel
+
+@if (Model != null && Model.l_HaikusReviewed!=null && Model.l_HaikusReviewed.Count > 0)
+{
+    <table class="table table-dark table-striped">
+        <tr>
+            <th style="width:60%">Haiku Input</th>
+            <th style="width:10%">First</th>
+            <th style="width:10%">Second</th>
+            <th style="width:10%">Third</th>
+            <th style="width:10%">Is Haiku</th>
+        </tr>
+        @for(int i=0; i< Model.l_HaikusReviewed.Count; i++)
+        {
+        <tr>
+            <td>@Model.l_HaikusReviewed[i].HaikuText</td>
+            <td>@Model.l_HaikusReviewed[i].SyllableCountFirstLine</td>
+            <td>@Model.l_HaikusReviewed[i].SyllableCountSecondLine</td>
+            <td>@Model.l_HaikusReviewed[i].SyllableCountThirdLine</td>
+            <td>@Model.l_HaikusReviewed[i].HaikuResult</td>
+
+            @Html.HiddenFor(m => Model.l_HaikusReviewed[i].HaikuText)
+            @Html.HiddenFor(m => Model.l_HaikusReviewed[i].SyllableCountFirstLine)
+            @Html.HiddenFor(m => Model.l_HaikusReviewed[i].SyllableCountSecondLine)
+            @Html.HiddenFor(m => Model.l_HaikusReviewed[i].SyllableCountThirdLine)
+            @Html.HiddenFor(m => Model.l_HaikusReviewed[i].HaikuResult)
+        </tr>
+        }
+    </table>
+}
+else
+{
+    <p> No data available!</p>
+}
